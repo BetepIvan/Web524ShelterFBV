@@ -186,4 +186,4 @@ fabric.properties
 .idea
 
 ./users/migrations/
-./dogs/migrations/
+/dogs/migrations/
