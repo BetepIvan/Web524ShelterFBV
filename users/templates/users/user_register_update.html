@@ -12,18 +12,19 @@
           Введите данные для регистрации
           {% endif %}
       </div>
-      <div class="card-body">
-        <form method="post" enctype="multipart/form-data">
-          {% csrf_token %}
+      <form method="post" enctype="multipart/form-data">
+        {% csrf_token %}
+        <div class="card-body">
           {{ form.as_p }}
+        </div>
+        <div class="card-footer">
           {% if user.is_authenticated %}
           <button type="submit" class="btn btn-success">Сохранить</button>
           {% else %}
           <button type="submit" class="btn btn-success">Регистрация</button>
           {% endif %}
-        </form>
-      </div>
-      <div class="card-footer"></div>
+        </div>
+      </form>
     </div>
   </div>
 </div>
