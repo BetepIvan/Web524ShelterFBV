@@ -3,7 +3,7 @@ from django import forms
 from users.models import User
 
 
-class UserRegisterFrom(forms.ModelForm):
+class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
     password2 = forms.CharField(label='Повторите пароль', widget=forms.PasswordInput)
 
@@ -17,3 +17,8 @@ class UserRegisterFrom(forms.ModelForm):
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Ошибка! Пароли не совпадают!')
         return cd['password2']
+
+
+class UserLoginForm(forms.Form):
+    email = forms.EmailField(label="email")
+    password = forms.CharField(label='пароль', widget=forms.PasswordInput)
