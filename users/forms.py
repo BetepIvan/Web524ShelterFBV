@@ -2,6 +2,10 @@ from django import forms
 
 from users.models import User
 
+class UserForm(forms.ModelForm):
+    model = User
+    fields = ('email', 'first_name', 'last_name', 'phone')
+    # exclude = ('is_active',)
 
 class UserRegisterForm(forms.ModelForm):
     password = forms.CharField(label='Пароль', widget=forms.PasswordInput)
@@ -24,7 +28,7 @@ class UserLoginForm(forms.Form):
     password = forms.CharField(label='пароль', widget=forms.PasswordInput)
 
 
-class UserForm(forms.ModelForm):
-    model = User
-    fields = ('email', 'first_name', 'last_name', 'phone')
-    # exclude = ('is_active',)
+class UserUpdateForm(forms.ModelForm):
+    class Meta:
+        model = User
+        fields = ('email', 'first_name', 'last_name', 'phone', 'telegram', 'avatar')
