@@ -2,7 +2,7 @@ import re
 from django.core.exceptions import ValidationError
 
 
-def validate_passswor(field):
+def validate_password(field):
     pattern = re.compile(r'^[A-Za-z0-9]+$')
     if not bool(re.match(pattern, field)):
         print('Пароль должен содержать только латинские буквы и цифры')

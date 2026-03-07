@@ -2,7 +2,7 @@ from django import forms
 from django.contrib.auth.forms import PasswordChangeForm
 
 from users.models import User
-from users.validators import validate_passswor
+from users.validators import validate_password
 
 
 class StyleFormMixin:
@@ -27,7 +27,7 @@ class UserRegisterForm(StyleFormMixin, forms.ModelForm):
 
     def clean_password2(self):
         cd = self.cleaned_data
-        validate_passswor(cd['password'])
+        validate_password(cd['password'])
         print(cd)
         if cd['password'] != cd['password2']:
             raise forms.ValidationError('Ошибка! Пароли не совпадают!')

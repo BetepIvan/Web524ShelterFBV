@@ -84,11 +84,13 @@ def user_update_view(request):
     }
     return render(request, 'users/user_register_update.html', context=context)
 
+
 @login_required(login_url='users:user_login')
 def user_change_password_view(request):
     user_object = request.user
-    form = UserChangePasswordForm(user_object, request.POST)
+
     if request.method == 'POST':
+        form = UserChangePasswordForm(user_object, request.POST)
         if form.is_valid():
             user_object = form.save()
             update_session_auth_hash(request, user_object)
@@ -96,6 +98,9 @@ def user_change_password_view(request):
             return HttpResponseRedirect(reverse('users:user_profile'))
         else:
             messages.error(request, 'Не удалось изменить пароль')
+    else:
+        form = UserChangePasswordForm(user_object)  # Создаем пустую форму для GET-запроса
+
     context = {
         'form': form,
         'title': f'Изменить пароль {user_object}',
